@@ -10,7 +10,7 @@
 MazeWidget::MazeWidget(QWidget *parent) : QWidget{parent} {}
 
 void MazeWidget::PaintMaze(QPainter *p) {
-  QPen pen(Qt::white);  // цвет для стен
+  QPen pen(Qt::white);
   pen.setWidth(2);
   p->setPen(pen);
   QRectF rectangle(0.0, 0.0, 500.0, 500.0);
@@ -80,12 +80,10 @@ void MazeWidget::paintEvent(QPaintEvent *event) {
     if (!start_point_.isNull()) {
       PaintIcon(&painter, &cat, icon_size, GetStart().GetX(),
                 GetStart().GetY());
-      //      update();
       start_point_ = QPointF();
     }
     if (!end_point_.isNull()) {
       PaintIcon(&painter, &mouse, icon_size, GetEnd().GetX(), GetEnd().GetY());
-      //      update();
     }
   }
   if (!path_.empty()) {
@@ -94,7 +92,7 @@ void MazeWidget::paintEvent(QPaintEvent *event) {
 }
 
 void MazeWidget::PaintPath(QPainter *p) {
-  QPen pen(Qt::yellow);  // цвет для пути
+  QPen pen(Qt::yellow);
   pen.setWidth(2);
   p->setPen(pen);
   p->drawPolyline(path_.data(), path_.size());
@@ -124,10 +122,6 @@ void MazeWidget::PaintIcon(QPainter *p, QPixmap *icon, int icon_size, int x,
   x = x * (500.0 / maze_model_->width);
   y = y * (500.0 / maze_model_->height);
   p->drawPixmap(x, y, icon->scaled(icon_size, icon_size));
-
-  //  QLabel label;
-  //  label.setPixmap(*icon);
-  //  label.show();
 }
 
 QList<QLine> MazeWidget::FillFloors(
